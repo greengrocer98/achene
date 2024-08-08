@@ -11,7 +11,7 @@
         "rows": ["GP0", "GP1", "GP2", "GP3"],
         "cols": ["GP28", "GP27", "GP26", "GP15", "GP14", "GP4", "GP5", "GP6", "GP7", "GP8"]
     },
-    "diode_direction": "ROW2COL",
+    "diode_direction": "COL2ROW",
     "processor": "RP2040",
     "bootloader": "rp2040",
     "layout_aliases": {
