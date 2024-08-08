@@ -8,8 +8,8 @@ enum keymap_layers {
     LAYER_RAISE,
 };
 
-#define LOWER MO(LAYER_LOWER)
-#define RAISE MO(LAYER_RAISE)
+#define LOWER LT(LAYER_LOWER, KC_ESC)
+#define RAISE LT(LAYER_RAISE, KC_TAB)
 
 #define CTL_ENT LCTL_T(KC_ENT)
 #define SFT_SPC LSFT_T(KC_SPC)
@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                 RAISE, CTL_ENT, SFT_SPC, GUI_BSPC,    ALT_DEL,               DRAG_SCROLL
+                 CTL_ENT, SFT_SPC, GUI_BSPC, RAISE,   ALT_DEL,                      LOWER
   //           ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
       C(KC_BSLS), KC_GRV, KC_EQL, KC_MINS, KC_DOT,      KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_BSLS,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-               ALT_DEL, CTL_ENT, SFT_SPC, GUI_BSPC,    XXXXXXX,                   _______
+               CTL_ENT, SFT_SPC, GUI_BSPC, ALT_DEL,   XXXXXXX,                   _______
   //         ╰─────────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    DRAG_SCROLL, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI,
+       KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    SCROLL_V, KC_BTN1, KC_BTN2, SCROLL_H, XXXXXXX, 
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯

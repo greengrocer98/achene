@@ -1,29 +1,31 @@
+#include <math.h>
+
 #include "achene.h"
 
-bool set_scrolling = false;
+enum trackball_status {
+    ACCEL,
+    SCROLL,
+};
 
-// Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_V 12.0
-
-// Variables to store accumulated scroll values
-float scroll_accumulated_v = 0;
+struct trackball
+{
+    int status;
+    int accel_level;
+    int scroll;
+};
+struct trackball sensor = {ACCEL, 0, 0};
 
 // Function to handle mouse reports and perform drag scrolling
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    // Check if drag scrolling is active
-    if (set_scrolling) {
-        // Calculate and accumulate scroll values based on mouse movement and divisors
-        scroll_accumulated_v += (float)mouse_report.y / SCROLL_DIVISOR_V;
-
-        // Assign integer parts of accumulated scroll values to the mouse report
-        mouse_report.v = (int8_t)scroll_accumulated_v;
-
-        // Update accumulated scroll values by subtracting the integer parts
-        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
-
-        // Clear the X and Y values of the mouse report
-        mouse_report.x = 0;
-        mouse_report.y = 0;
+    switch (sensor.status)
+    {
+    case ACCEL:
+        set_accel_curve(&mouse_report, sensor.accel_level);
+        break;
+    case SCROLL:
+        set_scroll(&mouse_report, sensor.scroll);
+    default:
+        break;
     }
     return mouse_report;
 }
@@ -31,12 +33,49 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 // Function to handle key events and enable/disable drag scrolling
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case DRAG_SCROLL:
-            // Toggle set_scrolling when DRAG_SCROLL key is pressed or released
-            set_scrolling = record->event.pressed;
+        case ACCEL_1:
+            if (record->event.pressed) {
+                sensor.status = ACCEL;
+                sensor.accel_level = 1;
+            }
+            break;
+        case SCROLL_V:
+            if (record->event.pressed) {
+                sensor.status = SCROLL;
+                sensor.scroll = 0;
+            } else {
+                sensor.status = ACCEL;
+            }
+            break;
+        case SCROLL_H:
+            if (record->event.pressed) {
+                sensor.status = SCROLL;
+                sensor.scroll = 1;
+            } else {
+                sensor.status = ACCEL;
+            }
             break;
         default:
             break;
     }
     return true;
+}
+
+void set_accel_curve(report_mouse_t *mouse_report, int accel_level) {
+    int x;
+    int y;
+    float magnitude;
+
+    x = mouse_report->x;
+    y = mouse_report->y;
+
+    magnitude = pow(x*x+y*y, 0.4);
+
+    mouse_report->x = x*magnitude;
+    mouse_report->y = y*magnitude;
+}
+
+
+void set_scroll(report_mouse_t *mouse_report, int scroll_direction) {
+
 }
