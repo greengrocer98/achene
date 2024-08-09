@@ -3,10 +3,13 @@
 
 #include "quantum.h"
 
+#define CPI_STEP 100
+
 enum trackball_keycodes {
-    ACCEL_1 = SAFE_RANGE,
-    SCROLL_V,
-    SCROLL_H,
+    ACCEL_0 = SAFE_RANGE,
+    ACCEL_1,
+    CPI_UP,
+    CPI_DOWN,
 };
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report);

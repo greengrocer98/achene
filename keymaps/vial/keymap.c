@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_LOWER] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-        KC_6,    KC_6,    KC_7,    KC_8,    KC_9,       KC_MUTE, KC_VOLD, KC_VOLD, KC_PSCR, KC_RBRC,
+        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,       KC_MUTE, KC_VOLD, KC_VOLD, KC_PSCR, KC_RBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,       KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, CW_TOGG,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -44,11 +44,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_RAISE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    SCROLL_V, KC_BTN1, KC_BTN2, SCROLL_H, XXXXXXX, 
+       KC_LEFT, ACCEL_1, ACCEL_0, KC_RGHT, XXXXXXX,    KC_WH_D, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT,  EE_CLR, XXXXXXX, XXXXXXX, XXXXXXX,
+       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT,  CPI_UP, CPI_DOWN, XXXXXXX, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                 XXXXXXX, _______, _______, XXXXXXX,    _______, XXXXXXX
   //                   ╰───────────────────────────╯ ╰──────────────────╯
