@@ -8,13 +8,42 @@ enum keymap_layers {
     LAYER_RAISE,
 };
 
-#define LOWER LT(LAYER_LOWER, KC_ESC)
-#define RAISE LT(LAYER_RAISE, KC_TAB)
+#define LOWER_ESC LT(LAYER_LOWER, KC_ESC)
+#define RAISE_BSPC LT(LAYER_RAISE, KC_TAB)
 
 #define CTL_ENT LCTL_T(KC_ENT)
 #define SFT_SPC LSFT_T(KC_SPC)
 #define GUI_BSPC LGUI_T(KC_BSPC)
 #define ALT_DEL LALT_T(KC_DEL)
+#define GUI_DEL LGUI_T(KC_DEL)
+
+enum combos {
+  JK,
+  UI,
+  MCOM,
+  DF,
+  ER,
+  CV,
+  KL,
+};
+
+const uint16_t PROGMEM jk[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM ui[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM mcom[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM df[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM er[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM cv[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM kl[] = {KC_K, KC_L, COMBO_END};
+
+// combo_t key_combos[] = {
+//   [JK] = COMBO(jk, KC_LALT),
+//   [UI] = COMBO(ui, S(KC_9)),
+//   [MCOM] = COMBO(mcom, KC_LBRC),
+//   [DF] = COMBO(df, KC_TAB),
+//   [ER] = COMBO(er, S(KC_0)),
+//   [CV] = COMBO(cv, KC_RBRC),
+//   [KL] = COMBO(kl, KC_QUOT),
+// };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -26,8 +55,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                 CTL_ENT, SFT_SPC, GUI_BSPC, RAISE,   ALT_DEL,                      LOWER
-  //           ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
+             RAISE_BSPC, CTL_ENT, SFT_SPC, XXXXXXX,     ALT_DEL,                    LOWER_ESC
+  //      ╰────────────────────────────────────────╯ ╰───────────────────────────────────────╯
   ),
 
   [LAYER_LOWER] = LAYOUT(
@@ -38,17 +67,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
       C(KC_BSLS), KC_GRV, KC_EQL, KC_MINS, KC_DOT,      KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_BSLS,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-               CTL_ENT, SFT_SPC, GUI_BSPC, ALT_DEL,   XXXXXXX,                   _______
+              GUI_BSPC, CTL_ENT, SFT_SPC, ALT_DEL,      XXXXXXX,                  _______
   //         ╰─────────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
   [LAYER_RAISE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
+         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LEFT, ACCEL_1, ACCEL_0, KC_RGHT, XXXXXXX,    KC_WH_D, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
+         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    ACCEL_0, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT,  CPI_UP, CPI_DOWN, XXXXXXX, XXXXXXX,
+       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    ACCEL_1, CPI_UP, CPI_DOWN, XXXXXXX, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                 XXXXXXX, _______, _______, XXXXXXX,    _______, XXXXXXX
   //                   ╰───────────────────────────╯ ╰──────────────────╯
