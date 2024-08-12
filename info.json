@@ -1,7 +1,7 @@
 {
     "keyboard_name": "Achene",
     "manufacturer": "GGrocer",
-    "url": "example.com",
+    "url": "https://github.com/greengrocer98/achene",
     "usb": {
         "device_version": "1.0.0",
         "pid": "0xDEAD",

@@ -7,8 +7,7 @@ enum trackball_status {
     SCROLL,
 };
 
-uint8_t accel_level = 0;
-
+uint8_t  accel_level = 1;
 uint16_t current_cpi;
 
 // Function to handle mouse reports and perform drag scrolling
@@ -55,7 +54,7 @@ void set_accel_curve(report_mouse_t *mouse_report, int accel_level) {
             /* go without changing */
             break;
         case 1:
-            /* custom accelaration curve */ 
+            /* custom accelaration curve */
             x = mouse_report->x;
             y = mouse_report->y;
 
