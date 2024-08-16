@@ -93,11 +93,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_MOUSE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
+         KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
+         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  SCROLL_APPS, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    XXXXXXX, C(KC_WH_D), C(KC_WH_U), XXXXXXX, XXXXXXX,
+       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,  XXXXXXX, C(KC_WH_D), C(KC_WH_U), XXXXXXX, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                CTL_ENT, SFT_SPC, ALT_BSPC, XXXXXXX,   _______, XXXXXXX
   //      ╰────────────────────────────────────────╯ ╰──────────────────────╯
