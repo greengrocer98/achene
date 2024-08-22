@@ -51,7 +51,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 status = SCROLLING;
                 register_code(KC_LALT);
-                tap_code(KC_TAB);
             } else {
                 if (status == SCROLLING) {
                     status = ACCEL;
@@ -95,14 +94,4 @@ void scroll_apps(report_mouse_t *mouse_report) {
     }
     mouse_report->x = 0;
     mouse_report->y = 0;
-}
-
-bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case SCROLL_APPS:
-            return true;
-        default:
-            return false;
-    }
-    return is_mouse_record_user(keycode, record);
 }

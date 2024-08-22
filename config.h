@@ -12,14 +12,18 @@
 #define SPI_MISO_PIN GP12
 #define PMW33XX_CS_PIN GP13
 
-#define PMW33XX_CPI 1300      // The CPI range is 100-12000, in increments of 100. Defaults to 1600 CPI.
+#define PMW33XX_CPI 1300            // The CPI range is 100-12000, in increments of 100. Defaults to 1600 CPI.
 #define PMW33XX_CLOCK_SPEED 2000000 // Sets the clock speed that the sensor runs at. Defaults to 2000000
-#define MOUSE_EXTENDED_REPORT // Use -32767 to 32767, instead of just -127 to 127.
-// #define POINTING_DEVICE_TASK_THROTTLE_MS 10
+#define MOUSE_EXTENDED_REPORT       // Use -32767 to 32767, instead of just -127 to 127.
 
 /* Trackball adjustment. */
 #define POINTING_DEVICE_ROTATION_180
-// #define ROTATIONAL_TRANSFORM_ANGLE 10
 #define POINTING_DEVICE_INVERT_X
-
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+
+/* Mouse scroll adjustment. */
+#define MOUSEKEY_WHEEL_INTERVAL 150
+#define MOUSEKEY_WHEEL_DELAY 100
+#define MOUSEKEY_WHEEL_DELTA 1
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 120
+#define MOUSEKEY_WHEEL_MAX_SPEED 8
