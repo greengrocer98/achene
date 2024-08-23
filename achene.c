@@ -3,23 +3,27 @@
 #include "achene.h"
 
 enum trackball_status {
-    ACCEL,
-    SCROLLING,
+    MOUSE,
+    SCRL_APPS,
+    SCRL_VERT,
 };
 
-int      status      = ACCEL;
+int      status      = MOUSE;
 int      accel_level = 1;
 uint16_t current_cpi;
-int16_t  scroll_buffer = 0;
+int      scroll_apps_buf = 0;
+int      scroll_vert_buf = 0;
 
 // Function to handle mouse reports and perform drag scrolling
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     switch (status) {
-        case ACCEL:
+        case MOUSE:
             set_accel_curve(&mouse_report, accel_level);
             break;
-        case SCROLLING:
-            scroll_apps(&mouse_report);
+        case SCRL_APPS:
+            scroll_apps(&mouse_report, &scroll_apps_buf);
+        case SCRL_VERT:
+            scroll_vert(&mouse_report, &scroll_vert_buf);
         default:
             break;
     }
@@ -49,14 +53,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case SCROLL_APPS:
             if (record->event.pressed) {
-                status = SCROLLING;
+                status = SCRL_APPS;
                 register_code(KC_LALT);
             } else {
-                if (status == SCROLLING) {
-                    status = ACCEL;
-                    unregister_code(KC_LALT);
-                }
+                status = MOUSE;
+                unregister_code(KC_LALT);
             }
+            break;
+        case SCROLL_VERT:
+            if (record->event.pressed) {
+                status = SCRL_VERT;
+            } else {
+                status = MOUSE;
+            }
+            break;
         default:
             break;
     }
@@ -86,11 +96,21 @@ void set_accel_curve(report_mouse_t *mouse_report, int accel_level) {
     }
 }
 
-void scroll_apps(report_mouse_t *mouse_report) {
-    scroll_buffer += mouse_report->x;
-    if (abs(scroll_buffer) > SCROLL_BUFFER_SIZE) {
-        tap_code16(scroll_buffer > 0 ? KC_TAB : LSFT(KC_TAB));
-        scroll_buffer = 0;
+void scroll_apps(report_mouse_t *mouse_report, int *buf) {
+    *buf += mouse_report->x;
+    if (abs(*buf) > SCROLL_APPS_BUF_SIZE) {
+        tap_code16(*buf > 0 ? KC_TAB : LSFT(KC_TAB));
+        *buf = 0;
+    }
+    mouse_report->x = 0;
+    mouse_report->y = 0;
+}
+
+void scroll_vert(report_mouse_t *mouse_report, int *buf) {
+    *buf += mouse_report->x;
+    if (abs(*buf) > SCROLL_VERT_BUF_SIZE) {
+        mouse_report->v = *buf > 0 ? 1 : -1;
+        *buf            = 0;
     }
     mouse_report->x = 0;
     mouse_report->y = 0;
