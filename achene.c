@@ -14,6 +14,12 @@ uint16_t current_cpi;
 int      scroll_apps_buf = 0;
 int      scroll_vert_buf = 0;
 
+// Function to enable auto mouse layer
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(LAYER_MOUSE);
+    set_auto_mouse_enable(true);
+}
+
 // Function to handle mouse reports and perform drag scrolling
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     switch (status) {
@@ -71,6 +77,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
     }
     return true;
+}
+
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+    switch(keycode) {
+        case SCROLL_APPS:
+            return true;
+        case SCROLL_VERT:
+            return true;
+        default:
+            return false;
+    }
+    return  is_mouse_record_user(keycode, record);
 }
 
 void set_accel_curve(report_mouse_t *mouse_report, int accel_level) {

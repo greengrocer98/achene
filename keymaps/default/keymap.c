@@ -2,13 +2,6 @@
 #include QMK_KEYBOARD_H
 #include "achene.h"
 
-enum keymap_layers {
-    LAYER_BASE = 0,
-    LAYER_LOWER,
-    LAYER_RAISE,
-    LAYER_MOUSE,
-};
-
 #define LOWER_ESC LT(LAYER_LOWER, KC_ESC)
 #define RAISE_BSPC LT(LAYER_RAISE, KC_BSPC)
 
@@ -58,11 +51,6 @@ combo_t key_combos[] = {
 };
 
 
-// Function to enable auto mouse layer
-void pointing_device_init_user(void) {
-    set_auto_mouse_layer(LAYER_MOUSE);
-    set_auto_mouse_enable(true);
-}
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -96,9 +84,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
          KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_LGUI,   OSM_C,   OSM_S,   OSM_A,  OSM_G,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-        KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,   S(KC_LALT), XXXXXXX, XXXXXXX, XXXXXXX, CPI_DOWN,
+        KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, CPI_DOWN,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         XXXXXXX, XXXXXXX, _______,                 KC_LSFT
+                         XXXXXXX, XXXXXXX, _______,               S(KC_LALT)
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
   ),
 
@@ -108,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
          KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    KC_WH_L, XXXXXXX, KC_WH_U, KC_WH_R, XXXXXXX,
+       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    XXXXXXX, SCROLL_VERT, SCROLL_APPS, KC_WH_R, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                         CTL_ENT, SFT_SPC, ALT_BSPC,                 XXXXXXX
   //              ╰────────────────────────────────╯ ╰──────────────────────╯

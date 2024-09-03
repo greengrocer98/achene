@@ -7,6 +7,13 @@
 #define SCROLL_APPS_BUF_SIZE 400
 #define SCROLL_VERT_BUF_SIZE 40
 
+enum keymap_layers {
+    LAYER_BASE = 0,
+    LAYER_LOWER,
+    LAYER_RAISE,
+    LAYER_MOUSE,
+};
+
 enum trackball_keycodes {
     ACCEL_0 = SAFE_RANGE,
     ACCEL_1,

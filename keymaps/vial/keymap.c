@@ -2,13 +2,6 @@
 #include QMK_KEYBOARD_H
 #include "achene.h"
 
-enum keymap_layers {
-    LAYER_BASE = 0,
-    LAYER_LOWER,
-    LAYER_RAISE,
-    LAYER_MOUSE,
-};
-
 #define LOWER_ESC LT(LAYER_LOWER, KC_ESC)
 #define RAISE_BSPC LT(LAYER_RAISE, KC_BSPC)
 
@@ -57,12 +50,6 @@ enum keymap_layers {
 //   [SF] = COMBO(sf, SCROLL_VERT),
 // };
 
-
-// Function to enable auto mouse layer
-void pointing_device_init_user(void) {
-    set_auto_mouse_layer(LAYER_MOUSE);
-    set_auto_mouse_enable(true);
-}
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
