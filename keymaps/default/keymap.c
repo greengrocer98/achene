@@ -24,8 +24,6 @@ enum combos {
   ER,
   CV,
   KL,
-  SD,
-  SF,
 };
 
 const uint16_t PROGMEM jk[] = {KC_J, KC_K, COMBO_END};
@@ -35,8 +33,6 @@ const uint16_t PROGMEM df[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM er[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM cv[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM kl[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM sd[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM sf[] = {KC_S, KC_F, COMBO_END};
 
 combo_t key_combos[] = {
   [JK] = COMBO(jk, KC_LALT),
@@ -46,8 +42,6 @@ combo_t key_combos[] = {
   [ER] = COMBO(er, S(KC_0)),
   [CV] = COMBO(cv, KC_RBRC),
   [KL] = COMBO(kl, KC_QUOT),
-  [SD] = COMBO(sd, SCROLL_APPS),
-  [SF] = COMBO(sf, SCROLL_VERT),
 };
 
 
@@ -96,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
          KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    XXXXXXX, SCROLL_VERT, SCROLL_APPS, KC_WH_R, XXXXXXX,
+       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    XXXXXXX, SCROLL_VERT, SCROLL_WINS, MOVE_WINS, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                         CTL_ENT, SFT_SPC, ALT_BSPC,                 XXXXXXX
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
