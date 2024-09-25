@@ -6,6 +6,36 @@
         "rows": 4,
         "cols": 10
     },
+    "customKeycodes": [
+        {"name": "Acceration 0",
+        "title": "No acceleration",
+        "shortName": "No \naccel"
+        },
+        {"name": "Acceration 1",
+        "title": "Kinetic acceleration",
+        "shortName": "Kinetic \naccel"
+        },
+        {"name": "CPI up",
+        "title": "set CPI of sensor higher",
+        "shortName": "CPI \nup"
+        },
+        {"name": "CPI down",
+        "title": "set CPI of sensor lower",
+        "shortName": "CPI \ndown"
+        },
+        {"name": "Scroll windows",
+        "title": "Scroll between windows with trackball",
+        "shortName": "Scroll \nwindows"
+        },
+        {"name": "Scroll vertically",
+        "title": "Vertical scroll with trackball",
+        "shortName": "Scroll \nvertically"
+        },
+        {"name": "Move windows",
+        "title": "Move windows with trackball",
+        "shortName": "Move \nwindows"
+        }
+    ],
     "layouts": {
         "keymap": [
             [

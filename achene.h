@@ -16,7 +16,11 @@ enum keymap_layers {
 };
 
 enum trackball_keycodes {
-    ACCEL_0 = SAFE_RANGE,
+    #ifdef VIAL_ENABLE
+        ACCEL_0 = QK_KB_0,
+    #else
+        ACCEL_0 = SAFE_RANGE,
+    #endif
     ACCEL_1,
     CPI_UP,
     CPI_DOWN,
