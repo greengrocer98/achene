@@ -16,34 +16,39 @@
 #define OSM_G OSM(MOD_LGUI)
 #define OSM_A OSM(MOD_LALT)
 
-enum combos {
-  JK,
-  UI,
-  MCOM,
-  DF,
-  ER,
-  CV,
-  KL,
-};
+// enum combos {
+//   JK,
+//   UI,
+//   MCOM,
+//   DF,
+//   ER,
+//   CV,
+//   KL,
+//   SD,
+//   SF,
+// };
 
-const uint16_t PROGMEM jk[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM ui[] = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM mcom[] = {KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM df[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM er[] = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM cv[] = {KC_C, KC_V, COMBO_END};
-const uint16_t PROGMEM kl[] = {KC_K, KC_L, COMBO_END};
+// const uint16_t PROGMEM jk[] = {KC_J, KC_K, COMBO_END};
+// const uint16_t PROGMEM ui[] = {KC_U, KC_I, COMBO_END};
+// const uint16_t PROGMEM mcom[] = {KC_M, KC_COMM, COMBO_END};
+// const uint16_t PROGMEM df[] = {KC_D, KC_F, COMBO_END};
+// const uint16_t PROGMEM er[] = {KC_E, KC_R, COMBO_END};
+// const uint16_t PROGMEM cv[] = {KC_C, KC_V, COMBO_END};
+// const uint16_t PROGMEM kl[] = {KC_K, KC_L, COMBO_END};
+// const uint16_t PROGMEM sd[] = {KC_S, KC_D, COMBO_END};
+// const uint16_t PROGMEM sf[] = {KC_S, KC_F, COMBO_END};
 
-combo_t key_combos[] = {
-  [JK] = COMBO(jk, KC_LALT),
-  [UI] = COMBO(ui, S(KC_9)),
-  [MCOM] = COMBO(mcom, KC_LBRC),
-  [DF] = COMBO(df, KC_TAB),
-  [ER] = COMBO(er, S(KC_0)),
-  [CV] = COMBO(cv, KC_RBRC),
-  [KL] = COMBO(kl, KC_QUOT),
-};
-
+// combo_t key_combos[] = {
+//   [JK] = COMBO(jk, KC_LALT),
+//   [UI] = COMBO(ui, S(KC_9)),
+//   [MCOM] = COMBO(mcom, KC_LBRC),
+//   [DF] = COMBO(df, KC_TAB),
+//   [ER] = COMBO(er, S(KC_0)),
+//   [CV] = COMBO(cv, KC_RBRC),
+//   [KL] = COMBO(kl, KC_QUOT),
+//   [SD] = COMBO(sd, SCROLL_APPS),
+//   [SF] = COMBO(sf, SCROLL_VERT),
+// };
 
 
 // clang-format off
@@ -68,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
       S(KC_BSLS), S(KC_EQL), KC_EQL, KC_MINS, KC_DOT,   KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_BSLS,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                      CTL_ENT, SFT_SPC, ALT_BSPC,                   _______
+                      CTL_ENT, SFT_SPC, ALT_BSPC,                   XXXXXXX
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
   ),
 
@@ -80,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, CPI_DOWN,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         XXXXXXX, XXXXXXX, _______,               S(KC_LALT)
+                         XXXXXXX, XXXXXXX, XXXXXXX,               S(KC_LALT)
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
   ),
 
