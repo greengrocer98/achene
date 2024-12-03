@@ -6,7 +6,13 @@
 #define CPI_STEP 100
 #define SCROLL_WINS_BUF_SIZE 450
 #define MOVE_WINS_BUF_SIZE 350
-#define SCROLL_VERT_BUF_SIZE 40
+#define SCROLL_BUF_SIZE 40
+
+typedef struct {
+    int status;
+    int x_buf;
+    int y_buf;
+} trackball;
 
 enum keymap_layers {
     LAYER_BASE = 0,
@@ -25,14 +31,14 @@ enum trackball_keycodes {
     CPI_UP,
     CPI_DOWN,
     SCROLL_WINS,
-    SCROLL_VERT,
+    SCROLL,
     MOVE_WINS,
 };
 
 void set_accel_curve(report_mouse_t *mouse_report, int accel_level);
 
-void scroll_windows(report_mouse_t *mouse_report, int *buf);
+void scroll_windows(report_mouse_t *mouse_report, trackball *achene);
 
-void scroll_vert(report_mouse_t *mouse_report, int *buf);
+void scroll_vert(report_mouse_t *mouse_report, trackball *achene);
 
-void move_windows(report_mouse_t *mouse_report, int *buf_x, int *buf_y);
+void move_windows(report_mouse_t *mouse_report, trackball *achene);

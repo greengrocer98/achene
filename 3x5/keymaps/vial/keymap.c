@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                    CTL_ENT, SFT_SPC, RAISE_BSPC,                  LOWER_ESC
+          CTL_ENT, SFT_SPC, RAISE_BSPC,  XXXXXXX,    XXXXXXX,    LOWER_ESC
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
   ),
 
@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
       S(KC_BSLS), S(KC_EQL), KC_EQL, KC_MINS, KC_DOT,   KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_BSLS,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                      CTL_ENT, SFT_SPC, ALT_BSPC,                   XXXXXXX
+            CTL_ENT, SFT_SPC, ALT_BSPC,  XXXXXXX,       XXXXXXX, _______
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
   ),
 
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
         KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, CPI_DOWN,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         XXXXXXX, XXXXXXX, XXXXXXX,               S(KC_LALT)
+                XXXXXXX, XXXXXXX, _______, XXXXXXX,   XXXXXXX, S(KC_LALT)
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
   ),
 
@@ -95,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
          KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    XXXXXXX, KC_BTN1, KC_BTN2, KC_BTN3, XXXXXXX, 
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    XXXXXXX, SCROLL_VERT, SCROLL_WINS, MOVE_WINS, XXXXXXX,
+       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    XXXXXXX, SCROLL, SCROLL_WINS, MOVE_WINS, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                        CTL_ENT, SFT_SPC, ALT_BSPC,                 XXXXXXX
+               CTL_ENT, SFT_SPC, ALT_BSPC, XXXXXXX,    XXXXXXX,     XXXXXXX
   //              ╰────────────────────────────────╯ ╰──────────────────────╯
   ),
 };

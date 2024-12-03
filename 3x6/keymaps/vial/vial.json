@@ -1,0 +1,100 @@
+{
+    "name": "trackball keyboard 3x6",
+    "vendorId": "0xDEAD",
+    "productId": "0xBEEF",
+    "matrix": {
+        "rows": 8,
+        "cols": 6
+    },
+    "customKeycodes": [
+        {"name": "CPI up",
+        "title": "set CPI of sensor higher",
+        "shortName": "CPI \nup"
+        },
+        {"name": "CPI down",
+        "title": "set CPI of sensor lower",
+        "shortName": "CPI \ndown"
+        },
+        {"name": "Scroll windows",
+        "title": "Scroll between windows with trackball",
+        "shortName": "Scroll \nwindows"
+        },
+        {"name": "Scroll vertically",
+        "title": "Vertical scroll with trackball",
+        "shortName": "Scroll \nvertically"
+        },
+        {"name": "Move windows",
+        "title": "Move windows with trackball",
+        "shortName": "Move \nwindows"
+        }
+    ],
+    "layouts": {
+        "keymap": [
+            [
+                "0,0",
+                "0,1",
+                "0,2",
+                "0,3",
+                "0,4",
+                "0,5",
+                {
+                    "x": 4
+                },
+                "4,0",
+                "4,1",
+                "4,2",
+                "4,3",
+                "4,4",
+                "4,5"
+            ],
+            [
+                "1,0",
+                "1,1",
+                "1,2",
+                "1,3",
+                "1,4",
+                "1,5",
+                {
+                    "x": 4
+                },
+                "5,0",
+                "5,1",
+                "5,2",
+                "5,3",
+                "5,4",
+                "5,5"
+            ],
+            [
+                "2,0",
+                "2,1",
+                "2,2",
+                "2,3",
+                "2,4",
+                "2,5",
+                {
+                    "x": 4
+                },
+                "6,0",
+                "6,1",
+                "6,2",
+                "6,3",
+                "6,4",
+                "6,5"
+            ],
+            [
+                {
+                    "x": 4
+                },
+                "3,1",
+                "3,2",
+                "3,3",
+                {
+                    "x": 2
+                },
+                "7,2",
+                "7,3",
+                "7,4"
+            ]
+        ]
+    }
+}

@@ -5,12 +5,13 @@
 enum trackball_status {
     MOUSE,
     SCRL_WINS,
-    SCRL_VERT,
+    SCRL,
     MV_WINS,
 };
 
+trackball achene_trackball = {.status = MOUSE, .x_buf = 0, .y_buf = 0};
 int      status      = MOUSE;
-int      accel_level = 1;
+int      accel_level = 0;
 uint16_t current_cpi;
 int      scroll_apps_buf = 0;
 int      scroll_vert_buf = 0;
@@ -25,18 +26,15 @@ void pointing_device_init_user(void) {
 
 // Function to handle mouse reports and perform drag scrolling
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    switch (status) {
-        case MOUSE:
-            set_accel_curve(&mouse_report, accel_level);
-            break;
+    switch (achene_trackball.status) {
         case SCRL_WINS:
-            scroll_windows(&mouse_report, &scroll_apps_buf);
+            scroll_windows(&mouse_report, &achene_trackball);
             break;
-        case SCRL_VERT:
-            scroll_vert(&mouse_report, &scroll_vert_buf);
+        case SCRL:
+            scroll_vert(&mouse_report, &achene_trackball);
             break;
         case MV_WINS:
-            move_windows(&mouse_report, &move_buf_x, &move_buf_y);
+            move_windows(&mouse_report, &achene_trackball);
             break;
         default:
             break;
@@ -47,12 +45,6 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 // Function to handle key events
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case ACCEL_0:
-            accel_level = 0;
-            break;
-        case ACCEL_1:
-            accel_level = 1;
-            break;
         case CPI_UP:
             current_cpi = pointing_device_get_cpi();
             if (current_cpi < 12000 + CPI_STEP) {
@@ -67,27 +59,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case SCROLL_WINS:
             if (record->event.pressed) {
-                status = SCRL_WINS;
+                achene_trackball.status = SCRL_WINS;
                 register_code(KC_LALT);
             } else {
                 unregister_code(KC_LALT);
-                status = MOUSE;
+                achene_trackball.status = MOUSE;
+                achene_trackball.x_buf = 0;
+                achene_trackball.y_buf = 0;
             }
             break;
-        case SCROLL_VERT:
+        case SCROLL:
             if (record->event.pressed) {
-                status = SCRL_VERT;
+                achene_trackball.status = SCRL;
             } else {
-                status = MOUSE;
+                achene_trackball.status = MOUSE;
+                achene_trackball.x_buf = 0;
+                achene_trackball.y_buf = 0;
             }
             break;
         case MOVE_WINS:
             if (record->event.pressed) {
-                status = MV_WINS;
+                achene_trackball.status = MV_WINS;
                 register_code(KC_LGUI);
             } else {
                 unregister_code(KC_LGUI);
-                status = MOUSE;
+                achene_trackball.status = MOUSE;
+                achene_trackball.x_buf = 0;
+                achene_trackball.y_buf = 0;
             }
             break;
         default:
@@ -100,7 +98,7 @@ bool is_mouse_record_kb(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case SCROLL_WINS:
             return true;
-        case SCROLL_VERT:
+        case SCROLL:
             return true;
         case MOVE_WINS:
             return true;
@@ -133,38 +131,41 @@ void set_accel_curve(report_mouse_t *mouse_report, int accel_level) {
     }
 }
 
-void scroll_windows(report_mouse_t *mouse_report, int *buf) {
-    *buf += mouse_report->x;
-    if (abs(*buf) > SCROLL_WINS_BUF_SIZE) {
-        tap_code16(*buf > 0 ? KC_TAB : LSFT(KC_TAB));
-        *buf = 0;
+void scroll_windows(report_mouse_t *mouse_report, trackball *achene) {
+    achene->x_buf += mouse_report->x;
+    if (abs(achene->x_buf) > SCROLL_WINS_BUF_SIZE) {
+        tap_code16(achene->x_buf > 0 ? KC_TAB : LSFT(KC_TAB));
+        achene->x_buf = 0;
     }
     mouse_report->x = 0;
     mouse_report->y = 0;
 }
 
-void scroll_vert(report_mouse_t *mouse_report, int *buf) {
-    *buf += mouse_report->x;
-    if (abs(*buf) > SCROLL_VERT_BUF_SIZE) {
-        mouse_report->v = *buf > 0 ? 1 : -1;
-        *buf            = 0;
+void scroll_vert(report_mouse_t *mouse_report, trackball *achene) {
+    achene->x_buf += mouse_report->x;
+    achene->y_buf += mouse_report->y;
+    if (abs(achene->y_buf) > SCROLL_BUF_SIZE) {
+        mouse_report->v = achene->y_buf > 0 ? 1 : -1;
+        achene->y_buf            = 0;
+    }
+    if (abs(achene->x_buf) > SCROLL_BUF_SIZE) {
+        mouse_report->h = achene->x_buf > 0 ? 1 : -1;
+        achene->x_buf            = 0;
     }
     mouse_report->x = 0;
     mouse_report->y = 0;
 }
 
-void move_windows(report_mouse_t *mouse_report, int *buf_x, int *buf_y) {
-    *buf_x += mouse_report->x;
-    *buf_y += mouse_report->y;
-    if (abs(*buf_x) > MOVE_WINS_BUF_SIZE) {
-        tap_code16(*buf_x > 0 ? KC_RIGHT : KC_LEFT);
-        *buf_x = 0;
-        *buf_y = 0;
+void move_windows(report_mouse_t *mouse_report, trackball *achene) {
+    achene->x_buf += mouse_report->x;
+    achene->y_buf += mouse_report->y;
+    if (abs(achene->x_buf) > MOVE_WINS_BUF_SIZE) {
+        tap_code16(achene->x_buf > 0 ? KC_RIGHT : KC_LEFT);
+        achene->x_buf = 0;
     }
-    if (abs(*buf_y) > MOVE_WINS_BUF_SIZE) {
-        tap_code16(*buf_y > 0 ? KC_DOWN : KC_UP);
-        *buf_x = 0;
-        *buf_y = 0;
+    if (abs(achene->y_buf) > MOVE_WINS_BUF_SIZE) {
+        tap_code16(achene->y_buf > 0 ? KC_DOWN : KC_UP);
+        achene->y_buf = 0;
     }
     mouse_report->x = 0;
     mouse_report->y = 0;
