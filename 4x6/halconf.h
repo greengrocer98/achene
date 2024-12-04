@@ -16,7 +16,8 @@
 
 #pragma once
 
-#include_next "mcuconf.h"
+#define HAL_USE_SPI TRUE
+#define SPI_USE_WAIT TRUE
+#define SPI_SELECT_MODE SPI_SELECT_MODE_PAD
 
-#undef RP_SPI_USE_SPI0
-#define RP_SPI_USE_SPI0 TRUE
+#include_next "halconf.h"
