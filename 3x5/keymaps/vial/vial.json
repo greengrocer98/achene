@@ -7,14 +7,6 @@
         "cols": 10
     },
     "customKeycodes": [
-        {"name": "Acceration 0",
-        "title": "No acceleration",
-        "shortName": "No \naccel"
-        },
-        {"name": "Acceration 1",
-        "title": "Kinetic acceleration",
-        "shortName": "Kinetic \naccel"
-        },
         {"name": "CPI up",
         "title": "set CPI of sensor higher",
         "shortName": "CPI \nup"
@@ -27,13 +19,33 @@
         "title": "Scroll between windows with trackball",
         "shortName": "Scroll \nwindows"
         },
+        {"name": "Scroll",
+        "title": "Scroll with trackball",
+        "shortName": "Scroll"
+        },
         {"name": "Scroll vertically",
-        "title": "Vertical scroll with trackball",
-        "shortName": "Scroll \nvertically"
+        "title": "Scroll with trackball aka vertical wheel",
+        "shortName": "Scroll \nvert"
+        },
+        {"name": "Scroll horizontally",
+        "title": "Scroll with trackball aka horizontal wheel",
+        "shortName": "Scroll \nhorz"
         },
         {"name": "Move windows",
         "title": "Move windows with trackball",
         "shortName": "Move \nwindows"
+        },
+        {"name": "Caret",
+        "title": "Move caret with trackball",
+        "shortName": "Caret"
+        },
+        {"name": "Caret vertically",
+        "title": "Move caret only vertically with trackball",
+        "shortName": "Caret \nvert"
+        },
+        {"name": "Caret horizontally",
+        "title": "Move caret only horizontally with trackball",
+        "shortName": "Caret \nhorz"
         }
     ],
     "layouts": {
