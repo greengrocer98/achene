@@ -39,8 +39,6 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
             scroll_horz(&mouse_report, &achene_trackball);
             break;
         case CRT:
-            caret(&mouse_report, &achene_trackball);
-            break;
         case CRT_VERT:
             caret_vert(&mouse_report, &achene_trackball);
             break;

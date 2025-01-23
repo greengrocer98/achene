@@ -10,11 +10,11 @@
 #define SOFT_SERIAL_PIN GP0
 
 /* SPI & PMW3360 settings. */
-#define SPI_DRIVER SPID0
-#define SPI_SCK_PIN GP6
-#define SPI_MOSI_PIN GP7
-#define SPI_MISO_PIN GP4
-#define PMW33XX_CS_PIN GP5
+#define SPI_DRIVER SPID1
+#define SPI_SCK_PIN GP10
+#define SPI_MOSI_PIN GP11
+#define SPI_MISO_PIN GP12
+#define PMW33XX_CS_PIN GP13
 
 #define PMW33XX_CPI 500             // The CPI range is 100-12000, in increments of 100. Defaults to 1600 CPI.
 #define PMW33XX_CLOCK_SPEED 2000000 // Sets the clock speed that the sensor runs at. Defaults to 2000000

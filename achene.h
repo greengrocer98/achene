@@ -23,7 +23,11 @@ enum keymap_layers {
 };
 
 enum trackball_keycodes {
-    CPI_UP = SAFE_RANGE,
+    #ifdef VIAL_ENABLE
+        CPI_UP = QK_KB_0,
+    #else
+        CPI_UP = SAFE_RANGE,
+    #endif
     CPI_DOWN,
     SCROLL_WINS,
     SCROLL,
